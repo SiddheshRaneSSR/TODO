@@ -3,7 +3,7 @@ const task = require('../../model/task/taskmodel');
 // Create Task
 exports.createTask = async (req, res) => {
   try {
-    const { TaskName, TaskDesc, TaskImp } = req.body;
+    const { taskName, taskDesc, taskImp } = req.body;
 
     const newTask = new task({
       taskName,
@@ -16,7 +16,9 @@ exports.createTask = async (req, res) => {
     res.status(200).json({ message: "Task created successfully", task: newTask });
 
   } catch (err) {
-    res.status(500).json({ message: "Error creating task", error: err });
+    	  console.error("Task creation error:", err);
+
+	res.status(500).json({ message: "Error creating task", error: err });
   }
 };
 
